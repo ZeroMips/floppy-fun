@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+
+<Database FWVersion="02.300" SaveItemType="Data">
+	<Group Name="ReferenceCurveAttributes" NofSubGroups="0" NofProperties="10">
+		<Prop Name="Source" Value="D7...D0"/>
+		<Prop Name="XStart" Value="-2.00005440e-02" Unit="s"/>
+		<Prop Name="XStop" Value="2.20000528e-01" Unit="s"/>
+		<Prop Name="BaseYStart" Value="0.00e+00" Unit=""/>
+		<Prop Name="BaseYStop" Value="2.55e+02" Unit=""/>
+		<Prop Name="RecordLength" Value="15000068"/>
+		<Prop Name="InterleavedTraceCount" Value="1"/>
+		<Prop Name="MultiChannelExport" Value="1"/>
+		<Prop Name="DataFormat" Value="UINT8"/>
+		<Prop Name="MSBFirst" Value="1"/>
+	</Group>
+</Database>
