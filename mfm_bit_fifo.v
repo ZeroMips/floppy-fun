@@ -25,6 +25,7 @@ module mfm_bit_fifo (
 	reg [3:0] r_Ctr;
 	reg [15:0] r_Data;
 	reg r_Valid;
+	reg r_Valid_Last;
 
 	always @(posedge i_Clk or posedge i_Reset)
 	begin
@@ -71,6 +72,7 @@ module mfm_bit_fifo (
 			end
 			else
 				r_Valid <= 1'b0;
+			r_Valid_Last <= r_Valid;
 		end
 	end
 
@@ -92,6 +94,6 @@ module mfm_bit_fifo (
 	assign o_Data[6] = r_Data[13];
 	assign o_Data[7] = r_Data[15];
 
-	assign o_Valid = r_Valid;
+	assign o_Valid = r_Valid && !r_Valid_Last; // rising edge
 
 endmodule
