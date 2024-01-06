@@ -21,5 +21,5 @@ I have hacked together a little python script that decodes the MFM symbols S, M 
 There is some verilog code for decoding the MFM stream.
 The testbench can be built with
 ```
-verilator -Wall --trace --cc mfm.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v --exe --build sim_main.cpp
+verilator -Wall --trace --cc mfm.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v sector_header.v --exe --build sim_main.cpp
 ```
