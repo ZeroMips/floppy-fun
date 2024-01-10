@@ -36,6 +36,8 @@ module sector_header (
 	output [7:0] o_Sector,
 	output [7:0] o_SectorSize,
 	output [15:0] o_CRC,
+	output o_CRCError,
+	output [3:0] o_State,
 	output o_Valid);
 
 	localparam WAIT_SYNC = 4'd0;
@@ -59,12 +61,16 @@ module sector_header (
 	reg [15:0] r_CRCCalc;
 
 	reg [3:0] r_State;
+	reg r_CRCError;
 	reg r_Valid;
 
 	always @(posedge i_Clk or posedge i_Reset)
 	begin
 		if (i_Reset)
+		begin
 			r_State <= WAIT_SYNC;
+			r_CRCError <= 0;
+		end
 		else
 		begin
 			if (i_Sync && (r_State != WAIT_A1_1) && (r_State != WAIT_A1_2))
@@ -135,10 +141,14 @@ module sector_header (
 			begin
 				if (r_CRCCalc == r_CRCRead)
 					r_Valid <= 1;
+				else
+					r_CRCError <= 1;
 				r_State <= WAIT_SYNC;
 			end
 			if (r_Valid)
 				r_Valid <= 0;
+			if (r_CRCError)
+				r_CRCError <= 0;
 		end
 
 	end
@@ -148,7 +158,9 @@ module sector_header (
 	assign o_Sector = r_Sector;
 	assign o_SectorSize = r_SectorSize;
 	assign o_CRC = r_CRCRead;
+	assign o_CRCError = r_CRCError;
 	assign o_Valid = r_Valid;
+	assign o_State = r_State;
 
 endmodule
 

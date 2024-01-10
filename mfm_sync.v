@@ -50,7 +50,6 @@ module mfm_sync (
 				r_State <= WAIT_L0;
 			endcase
 		end
-
 	end
 
 	assign o_Sync = (r_State == DONE);

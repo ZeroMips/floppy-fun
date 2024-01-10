@@ -29,10 +29,12 @@ module mfm_quantize #(parameter clkspd=65000000) (
 	reg r_M = 0;
 	reg r_L = 0;
 	reg r_ERROR = 0;
+	reg r_Data;
 
 	always @(posedge i_Clk)
 	begin
-		if (r_Last && !i_Data)
+		r_Data <= i_Data;
+		if (r_Last && !r_Data)
 		begin
 			if (r_Ctr < T_S)
 			begin
@@ -75,8 +77,8 @@ module mfm_quantize #(parameter clkspd=65000000) (
 			r_L <= 0;
 			r_ERROR <= 0;
 		end
-		r_Last <= i_Data;
-	end;
+		r_Last <= r_Data;
+	end
 
 	assign o_S = r_S;
 	assign o_M = r_M;
