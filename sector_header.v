@@ -34,10 +34,8 @@ module sector_header (
 	output [7:0] o_Track,
 	output [7:0] o_Side,
 	output [7:0] o_Sector,
-	output [7:0] o_SectorSize,
-	output [15:0] o_CRC,
+	output [7:0] o_SectorSize, /* exponential, 0: 128, 1: 256, 2: 512, 3: 1024 */
 	output o_CRCError,
-	output [3:0] o_State,
 	output o_Valid);
 
 	localparam WAIT_SYNC = 4'd0;
@@ -157,10 +155,8 @@ module sector_header (
 	assign o_Side = r_Side;
 	assign o_Sector = r_Sector;
 	assign o_SectorSize = r_SectorSize;
-	assign o_CRC = r_CRCRead;
 	assign o_CRCError = r_CRCError;
 	assign o_Valid = r_Valid;
-	assign o_State = r_State;
 
 endmodule
 

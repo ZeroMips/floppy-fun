@@ -6,7 +6,8 @@ PACKAGE = vq100
 
 all: $(PROJ).bin
 
-SRC :=  mfm.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v sector_header.v Binary_To_7Segment.v top.v
+SRC :=  floppy.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v sector_header.v sector_data.v \
+Binary_To_7Segment.v vga_timing.v vga_patterngen.v FIFO.v RAM_2Port.v top.v
 
 %.json: $(SRC)
 	verilator --lint-only --top-module top $(SRC)

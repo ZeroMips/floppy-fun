@@ -4,13 +4,13 @@
 #include <fstream>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vmfm.h"
+#include "Vtop.h"
 
 #define MAX_SIM_TIME 20000000
 vluint64_t sim_time = 0;
 
 int main(int argc, char** argv, char** env) {
-	Vmfm *dut = new Vmfm;
+	Vtop *dut = new Vtop;
 
 	Verilated::traceEverOn(true);
 	Verilated::timeunit(9);
@@ -23,7 +23,7 @@ int main(int argc, char** argv, char** env) {
 	{
 		uint8_t v;
 		while ((sim_time < MAX_SIM_TIME) && (file>>v)) {
-			dut->i_Data = !!(v & 2);
+			dut->io_PMOD_1 = !!(v & 2);
 			dut->i_Clk ^= 1;
 			dut->eval();
 			m_trace->dump(sim_time);
@@ -39,6 +39,8 @@ int main(int argc, char** argv, char** env) {
 	delete dut;
 	exit(EXIT_SUCCESS);
 }
+
+double sc_time_stamp() { return 0; }
 
 /*
 module mfm;
