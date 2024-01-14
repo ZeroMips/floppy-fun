@@ -18,8 +18,12 @@ I have hacked together a little python script that decodes the MFM symbols S, M 
 
 ## Verilog implementation
 
-There is some verilog code for decoding the MFM stream.
+The verilog code can decode the MFM stream, parse sector headers, read data,
+verify CRC for sector and data. Read data gets pushed to a FIFO.
+
+There is also a VGA out implementation with a test pattern generator.
+
 The testbench can be built with
 ```
-verilator -Wall --trace --cc mfm.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v sector_header.v --exe --build sim_main.cpp
+verilator -Gclkspd=62500000 -Wall --trace --cc top.v floppy.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v sector_header.v sector_data.v vga_timing.v vga_patterngen.v --exe --build sim_main.cpp
 ```
