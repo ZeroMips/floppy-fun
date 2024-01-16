@@ -1,0 +1,7 @@
+# Specify filepatterns you want git to ignore.
+
+obj_dir
+*.bin
+*.o
+*.vcd
+*.d
