@@ -121,10 +121,9 @@ module top #(parameter clkspd=25000000) (
 		.o_VSync(w_VSync)
 	);
 
-	vga_patterngen vga_patterngen_inst(
+	vga_rle vga_rle_inst(
 		.i_Clk(i_Clk),
 		.i_DE(w_DE),
-		.i_HSync(w_HSync),
 		.i_VSync(w_VSync),
 		.o_R(w_R),
 		.o_G(w_G),
