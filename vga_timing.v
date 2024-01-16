@@ -5,7 +5,7 @@ module vga_timing (
 	output o_VSync);
 
 	reg [9:0] h_ctr = 0;
-	reg [8:0] v_ctr = 0;
+	reg [9:0] v_ctr = 0;
 	reg r_h_sync;
 	reg r_v_sync;
 	reg r_h_active;
@@ -44,6 +44,7 @@ module vga_timing (
 		 */
 		if (h_ctr < POS_H_SYNC)
 		begin
+			r_h_active <= 0;
 			r_h_sync <= H_POL;
 			h_ctr <= h_ctr + 1;
 		end
