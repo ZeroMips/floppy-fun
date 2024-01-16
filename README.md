@@ -23,6 +23,16 @@ verify CRC for sector and data. Read data gets pushed to a FIFO.
 
 There is also a VGA out implementation with a test pattern generator.
 
+To play with the bad apple demo, get the original images and transform them
+to monochrome 640x40.
+
+```
+ffmpeg -i data/bad_apple_original.mp4 -an  -vf fps=10,scale=640:480 /tmp/bad_apple_orig%05d.png
+mogrify -monitor -black-threshold 90% -type bilevel /tmp/bad_apple_orig*.png
+```
+
+Then it can be RLE encoded with minirle.py.
+
 The testbench can be built with
 ```
 verilator -Gclkspd=62500000 -Wall --trace --cc top.v floppy.v mfm_quantize.v mfm_sync.v mfm_bit_fifo.v sector_header.v sector_data.v vga_timing.v vga_patterngen.v --exe --build sim_main.cpp
