@@ -24,11 +24,14 @@ verify CRC for sector and data. Read data gets pushed to a FIFO.
 There is also a VGA out implementation with a test pattern generator.
 
 To play with the bad apple demo, get the original images and transform them
-to monochrome 640x40.
+to monochrome 640x40. Then RLE encode the data and provide it as an image file
+for Verilog `readmemh`.
 
 ```
 ffmpeg -i data/bad_apple_original.mp4 -an  -vf fps=10,scale=640:480 /tmp/bad_apple_orig%05d.png
 mogrify -monitor -black-threshold 90% -type bilevel /tmp/bad_apple_orig*.png
+python3 minirle.py
+srec_cat ../badapple/floppy.img -binary -Output rom.bin -VMem 16
 ```
 
 Then it can be RLE encoded with minirle.py.
