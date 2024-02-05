@@ -2,6 +2,8 @@
 
 This project is for learning about the ancient art of floppy disks and drives.
 
+For connecting the floppy drive to a FPGA I have designed a Pmod: https://github.com/ZeroMips/pmod-floppy
+
 This is a nice resource for a deep dive into floppy data encoding: https://floppy.cafe/index.html
 
 I have read a track from a disk using my trusty R&S scopes logic probe. It is sampled with 62.5 Megasamples, meaning there are 62.5 sample per microsecond.
